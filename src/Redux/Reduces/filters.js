@@ -14,7 +14,7 @@ const filters = (state = initialState, action) => {
     if(action.type === "SET_CATEGORY"){
         return {
             ...state,
-            items: action.payload,
+            category: action.payload,
             
         }
     }
