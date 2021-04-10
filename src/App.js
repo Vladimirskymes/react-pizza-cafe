@@ -3,21 +3,11 @@ import { Header, } from "./components/index"
 import {Home, Cart} from "./pages"
 import {Route} from "react-router-dom"
 import React from "react"
-import {useDispatch} from "react-redux"
-import {setPizzas as setPizzasAction} from "./Redux/Actions/pizzas"
-import axios from "axios"
-
 
 
 
 
 function App (){
-  const dispatch = useDispatch()
-  React.useEffect(() => {
-    axios.get("http://localhost:3001/pizzas").then(({data}) => {
-    dispatch(setPizzasAction(data));
-      });
-  }, []);
 
   return (
     <div className="wrapper">

@@ -4,7 +4,10 @@ import PropTypes from "prop-types"
 
 
 
-function PizzaBlock({name, imageUrl,sizes, price, types, category, rating}) {
+
+
+
+export default function PizzaBlock({name, imageUrl,sizes, price, types, category, rating}) {
 
     const typesNames = ["тонкое", "традиционное"];
     const availableSizes = [26, 30, 40]
@@ -76,7 +79,7 @@ PizzaBlock.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   types: PropTypes.arrayOf(PropTypes.number).isRequired,
-  sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+  sizes: PropTypes.arrayOf(PropTypes.number).isRequired
 
 }
-export default PizzaBlock
+
