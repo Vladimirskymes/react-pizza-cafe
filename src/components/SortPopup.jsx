@@ -23,7 +23,6 @@ const SortPopup = React.memo(function SortPopup({items, activeSortType, onClickS
 
   React.useEffect(() => {
   document.body.addEventListener('click', handleOutsideClick)
-  console.log(sortRef)
   }, [visiblePopup]);
   
  

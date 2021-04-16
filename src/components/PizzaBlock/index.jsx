@@ -1,23 +1,35 @@
 import React from 'react'
 import classNames from "classnames"
 import PropTypes from "prop-types"
+import Button from "../button"
 
 
 
 
 
 
-export default function PizzaBlock({name, imageUrl,sizes, price, types, category, rating}) {
+export default function PizzaBlock({addedCount, id, name, imageUrl, sizes, price, types, onAddPizzaClick}) {
 
     const typesNames = ["тонкое", "традиционное"];
     const availableSizes = [26, 30, 40]
+    const onAddPizza = () => {
+      const obj = {
+        id,
+        name,
+        imageUrl,
+        price,
+        size: availableSizes[activeSize],
+        type: typesNames[activeType]
+      };
+      onAddPizzaClick(obj)
+    }
     function selectSize(i){
         setActiveSize(i);
     }
     function selectType(i){
       setActiveType(i);
   }
-    const [activeSize, setActiveSize] = React.useState(sizes[0])
+    const [activeSize, setActiveSize] = React.useState(0)
     const [activeType, setActiveType] = React.useState(types[0])
 
     return (
@@ -51,7 +63,7 @@ export default function PizzaBlock({name, imageUrl,sizes, price, types, category
 </div>
 <div className="pizza-block__bottom">
   <div className="pizza-block__price">от {price} ₽</div>
-  <div className="button button--outline button--add">
+  <Button onClick={onAddPizza} className = "button--add" outline>
     <svg
       width="12"
       height="12"
@@ -65,8 +77,8 @@ export default function PizzaBlock({name, imageUrl,sizes, price, types, category
       />
     </svg>
     <span>Добавить</span>
-    <i>2</i>
-  </div>
+    {addedCount && <i>{addedCount}</i>}
+  </Button>
 </div>
 
 </div>
@@ -79,7 +91,8 @@ PizzaBlock.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   types: PropTypes.arrayOf(PropTypes.number).isRequired,
-  sizes: PropTypes.arrayOf(PropTypes.number).isRequired
+  sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onAddPizza: PropTypes.func,
+  addedCount: PropTypes.number
 
 }
-
