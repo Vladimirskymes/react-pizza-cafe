@@ -7,11 +7,11 @@ import {fetchPizzas} from "../Redux/Actions/pizzas"
 import {addPizzaToCart} from "../Redux/Actions/cart"
 import PizzaLoadingBlock from '../components/PizzaBlock/PizzaLoadingBlock'
 
-const categoryNames = ["Мясные", "Вегетарианские", "Гриль", "Острые", "Закрытые"];
+const categoryNames = ["Мясные", "Закрытые", "Гриль", "Острые", "Вегетарианские"];
 const sortItems = [
 {name: "популярности", type: "popular", order: "desc"},
  {name: "цене", type: "price", order: "desc"},
-{name: "алфавиту", type: "name", order: "asc"} ]
+{name: "алфавиту", type: "name", order: "asc"}]
 function Home() {
 
 
@@ -24,7 +24,6 @@ function Home() {
   const cartItems  = useSelector(({cart}) =>  cart.items)
   const isLoaded  = useSelector(({pizzas}) =>  pizzas.isLoaded)
   const {category, sortBy}  = useSelector(({filters}) =>  filters)
-  console.log(cartItems)
   React.useEffect(() => {
     dispatch(fetchPizzas(sortBy, category))
   }, [sortBy, category]);
@@ -48,7 +47,7 @@ function Home() {
           
          {
            isLoaded ? items.map((obj) => <PizzaBlock
-           addedCount={cartItems[obj.id] && cartItems[obj.id].length}
+           addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
            onAddPizzaClick={handleAddPizzaToCart} 
            isLoading={true} key={obj.id} {...obj} />) 
            :Array(10).fill(0).map((_, index) => <PizzaLoadingBlock key={index}/>)
