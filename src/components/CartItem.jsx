@@ -59,4 +59,4 @@ function CartItem({onMinusItems, onPlusItems, totalCount, id, imageUrl, totalPri
     )
 }
 
-export default CartItem
+export default CartItem;
